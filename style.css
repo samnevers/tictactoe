@@ -42,6 +42,22 @@ p {
   color: rgba(247, 247, 247, 0.8);
 }
 
+.tokenX {
+  font-family: "Sanchez", serif;
+  color: rgba(168, 58, 71, 1);
+  font-size: 1600%;
+  margin: 0em;
+  line-height: 0.2em;
+}
+
+.tokenO {
+  font-family: "Montserrat", sans-serif;
+  color: rgba(247, 247, 247, 0.9);
+  font-size:  900%;
+  margin: 0em;
+  line-height: 0.2em;
+}
+
 /*TOP*/
 .header {
   height: 160px;
@@ -74,7 +90,29 @@ p {
   background-image: url("images/chalkboard.jpg");
   background-size: cover;
   background-position: 70% 70%;
+  text-align: center;
+  padding: 8px 8px 8px 8px;
 }
+
+.column {
+  width: 26vw;
+  height: 80vh;
+  display: inline-block;
+  float: left;
+}
+
+.square {
+  width: 26vw;
+  height: 26vh;
+  border: rgba(247, 247, 247, 0.8) 4px solid;
+  margin: 0;
+  padding: 0;
+}
+
+/*THIS WILL DO FOR NOW, BUT YOU STILL NEED TO:
+  CENTER THE DIV
+  REMOVE THE APPROPRIATE BORDERS
+  STYLE THE BORDERS APPROPRIATELY*/
 
 /*BOTTOM DIV*/
 .bottom-div {
@@ -103,26 +141,27 @@ p {
   float: left;
   background-color: rgba(48, 41, 46, 0.5);
   text-align: center;
+  overflow: auto;
 }
 
 .turn {
   width: 100%;
   height: 20px;
+  margin-bottom: 10px;
   display: block;
 }
 
 .x {
   width: 100%;
-  height: 100px;
+  height: auto;
+  margin: 55% 0 0 0;
   display: block;
-  background-color: rgba(168, 58, 71, 1);
 }
 
 .o {
   width: 100%;
-  height: 100px;
+  height: auto;
   display: block;
-  background-color: white;
 }
 
 footer {
