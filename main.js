@@ -9,36 +9,58 @@ $(document).ready(function() {
 // Creating gameboard
   // You need to define the gameboard so you can access it X
   // You need to make sure the gameboard eg. the divs within are all clear at the start of the game
-  // You need to reset the gameboard when
+  // OPTIONAL: reset the gameboard to start a new game
 
   var $gameboard = $(".gameboard");
 
 // DETERMINE WHO'S TURN IT IS
-  var count = 0;
+  // where do we start?
+    // turn 0
+    // player 1
+    // marker x
+  var turn = 0;
+  var marker = "*";
 
-  var whichPlayer = function() {
-    console.log("you clicked the gameboard");
-    count += 1;
-    console.log(count);
-    if (count > 9) {
-      console.log("game over");
-    } else if(count % 2 === 0) {
-      playerOne = false;
-      playerTwo = true;
-      token = "o";
-      console.log("Your turn Player One");
-      return token;
-    } else {
-      playerOne = true;
-      playerTwo = false;
-      token = "*";
-      console.log("Your turn Player Two");
-      return token;
-    }
-    return count;
-  };
+  // is there an easier way to change turns?
 
-  $gameboard.on("click", whichPlayer);
+var nextTurn = function() {
+  turn += 1;
+  console.log(turn);
+  if (marker === "*") {
+    marker = "o";
+    console.log("It's your turn player 2");
+    return marker;
+  } else {
+    marker = "*";
+    console.log("It's your turn player 1");
+    return marker;
+  }
+  return turn;
+};
+
+  // var whichMarker = function() {
+  //   console.log("you clicked the gameboard");
+  //   turn += 1;
+  //   console.log(turn);
+  //   if (turn > 9) {
+  //     console.log("game over");
+  //   } else if(count % 2 === 0) {
+  //     playerOne = false;
+  //     playerTwo = true;
+  //     token = "o";
+  //     console.log("Your turn Player One");
+  //     return token;
+  //   } else {
+  //     playerOne = true;
+  //     playerTwo = false;
+  //     token = "*";
+  //     console.log("Your turn Player Two");
+  //     return token;
+  //   }
+  //   return turn;
+  // };
+
+  $gameboard.on("click", nextTurn);
 
 // defining the spaces - linking the DOM to values
   // eg. if a player puts a cross in squareA, how do we reflect this change?
@@ -58,9 +80,11 @@ var $squareG = $squares.eq(6);
 var $squareH = $squares.eq(7);
 var $squareI = $squares.eq(8);
 
-console.log($squareB, $squareC, $squareD, $squareE, $squareF, $squareG, $squareH, $squareI);
-
-
+if ($squares.eq(0) === $squares.eq(2)) {
+  console.log("true");
+} else {
+  console.log("false");
+}
 // assign event listeners to these...
   // First define your functions, esp. as these are recurring
 
@@ -85,110 +109,144 @@ console.log($squareB, $squareC, $squareD, $squareE, $squareF, $squareG, $squareH
 
   $squareA.one('click', function () {
     var thisSquare = $squareA;
-    if (playerOne === true) {
+    if (token === "*") {
       $(thisSquare).append("<p class='tokenX'>*</p>");
-      console.log("P2 clicked Square A");
+      console.log("P1 clicked Square A");
+      gameGrid[0][0] = "*";
     }
     else {
       $(thisSquare).append("<p class='tokenO'>o</p>");
-      console.log("P1 clicked Square A");
+      console.log("P2 clicked Square A");
+      gameGrid[0][0] = "o";
     }
   });
 
   $squareB.one('click', function () {
     var thisSquare = $squareB;
-    if (playerOne === true) {
+    if (token === "*") {
       $(thisSquare).append("<p class='tokenX'>*</p>");
-      console.log("P2 clicked Square B");
+      console.log("P1 clicked Square B");
+      gameGrid[1][0] = "*";
     }
     else {
       $(thisSquare).append("<p class='tokenO'>o</p>");
-      console.log("P1 clicked Square B");
+      console.log("P2 clicked Square B");
+      gameGrid[1][0] = "o";
     }
   });
 
   $squareC.one('click', function () {
     var thisSquare = $squareC;
-    if (playerOne === true) {
+    if (token === "*") {
       $(thisSquare).append("<p class='tokenX'>*</p>");
-      console.log("P2 clicked Square C");
+      console.log("P1 clicked Square C");
+      gameGrid[2][0] = "*";
     }
     else {
       $(thisSquare).append("<p class='tokenO'>o</p>");
-      console.log("P1 clicked Square C");
+      console.log("P2 clicked Square C");
+      gameGrid[2][0] = "o";
     }
   });
 
   $squareD.one('click', function () {
     var thisSquare = $squareD;
-    if (playerOne === true) {
+    if (token === "*") {
       $(thisSquare).append("<p class='tokenX'>*</p>");
-      console.log("P2 clicked Square D");
+      console.log("P1 clicked Square D");
+      gameGrid[0][1] = "*";
     }
     else {
       $(thisSquare).append("<p class='tokenO'>o</p>");
-      console.log("P1 clicked Square D");
+      console.log("P2 clicked Square D");
+      gameGrid[0][1] = "o";
     }
   });
 
   $squareE.one('click', function () {
     var thisSquare = $squareE;
-    if (playerOne === true) {
+    if (token === "*") {
       $(thisSquare).append("<p class='tokenX'>*</p>");
-      console.log("P2 clicked Square E");
+      console.log("P1 clicked Square E");
+      gameGrid[1][1] = "*";
     }
     else {
       $(thisSquare).append("<p class='tokenO'>o</p>");
-      console.log("P1 clicked Square E");
+      console.log("P2 clicked Square E");
+      gameGrid[1][1] = "o";
     }
   });
 
   $squareF.one('click', function () {
     var thisSquare = $squareF;
-    if (playerOne === true) {
+    if (token === "*") {
       $(thisSquare).append("<p class='tokenX'>*</p>");
-      console.log("P2 clicked Square F");
+      console.log("P1 clicked Square F");
+      gameGrid[2][1] = "*";
     }
     else {
       $(thisSquare).append("<p class='tokenO'>o</p>");
-      console.log("P1 clicked Square F");
+      console.log("P2 clicked Square F");
+      gameGrid[2][1] = "o";
     }
   });
 
   $squareG.one('click', function () {
     var thisSquare = $squareG;
-    if (playerOne === true) {
+    if (token === "*") {
       $(thisSquare).append("<p class='tokenX'>*</p>");
-      console.log("P2 clicked Square G");
+      console.log("P1 clicked Square G");
+      gameGrid[0][2] = "*";
     }
     else {
       $(thisSquare).append("<p class='tokenO'>o</p>");
-      console.log("P1 clicked Square G");
+      console.log("P2 clicked Square G");
+      gameGrid[0][2] = "o";
     }
   });
 
   $squareH.one('click', function () {
     var thisSquare = $squareH;
-    if (playerOne === true) {
+    if (token === "*") {
       $(thisSquare).append("<p class='tokenX'>*</p>");
-      console.log("P2 clicked Square H");
+      console.log("P1 clicked Square H");
+      gameGrid[1][2] = "*";
     }
     else {
       $(thisSquare).append("<p class='tokenO'>o</p>");
-      console.log("P1 clicked Square H");
+      console.log("P2 clicked Square H");
+      gameGrid[1][2] = "o";
     }
   });
 
   $squareI.one('click', function () {
     var thisSquare = $squareI;
-    if (playerOne === true) {
+    if (token === "*") {
       $(thisSquare).append("<p class='tokenX'>*</p>");
-      console.log("P2 clicked Square I");
+      console.log("P1 clicked Square I");
+      gameGrid[2][2] = "*";
     }
     else {
       $(thisSquare).append("<p class='tokenO'>o</p>");
-      console.log("P1 clicked Square I");
+      console.log("P2 clicked Square I");
+      gameGrid[2][2] = "o";
     }
   });
 
+// GAME LOGIC - HOW DO DIS
+  // is the square empty?
+  // who's turn it is it
+  // has anyone won yet?
+
+// win conditions
+
 });
+
+// this is a 2d array
+var gameGrid = [
+  ["","",""],
+  ["","",""],
+  ["","",""]
+];
+
+// we need to console log the array, and then run if else statements to check if the game has been won 
