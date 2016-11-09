@@ -7,12 +7,6 @@ $(document).ready(function() {
   var $gameboard = $(".gameboard");
 
 // DETERMINE WHO'S TURN IT IS
-  // where do we start?
-    // turn 0
-    // player 1
-    // marker x
-    // there should be only 9 turns
-  var turn = 0;
   var marker = "*";
 
 var nextTurn = function() {
@@ -27,9 +21,8 @@ var nextTurn = function() {
   }
 };
 
-  $gameboard.on("click", nextTurn);
+// ACCESSING THE SQUARES
 
-// linked to DOM via JQ
 var $squares = $("div.square");
 
 var $squareA = $squares.eq(0);
@@ -42,73 +35,106 @@ var $squareG = $squares.eq(6);
 var $squareH = $squares.eq(7);
 var $squareI = $squares.eq(8);
 
-if ($squares.eq(0) === $squares.eq(2)) {
-  console.log("true");
-} else {
-  console.log("false");
-}
 
-// let's try this:
-  // make the squares into an object, so you can call a singular function on them to make the code DRY
+// DEFINING RULES FOR WINNING
+  // FIRST, DEFINING/CHECKING FOR A WIN
 
-// first, let's check if the square is empty
-  // if square is empty, then a player can move there
-    // then we have to allow them to mark the box
-    // by checking which player/which marker to place
-    // add to the turn count as the player's turn has been completed
-  // else, alert user that this is an invalid move and to try again
-$squares.on("click", function (){
-  console.log(this.text);
-  if ($(this).text() === undefined) {
-    $(this).text(marker);
-    turn += 1;
-    if (marker === "*") {
-      $(this).addClass(tokenX);
-    } else {
-      $(this).addClass(tokenO);
+  var checkSquares = function($squareOne, $squareTwo, $squareThree) {
+    var squareOne = $squareOne.text();
+    var squareTwo = $squareTwo.text();
+    var squareThree = $squareThree.text();
+
+    if ((squareOne === squareTwo) && (squareTwo === squareThree)) {
+      if (squareOne === "*") {
+        console.log("Congratulations Player One!");
+        return "*";
+      } else if (squareOne === "o") {
+        console.log("Congratulations Player Two!");
+        return "o";
+      }
     }
-  } else {
+    return null;
+  };
+
+
+  // SECOND, DEFINING THE DIFFERENT WAYS TO WIN
+
+var rowWin = function() {
+  var topRow = checkSquares($squares.eq(0), $squares.eq(3), $squares.eq(6));
+  console.log(topRow);
+  var midRow = checkSquares($squares.eq(1), $squares.eq(4), $squares.eq(7));
+  console.log(midRow);
+  var bottomRow = checkSquares($squares.eq(2), $squares.eq(5), $squares.eq(8));
+  console.log(bottomRow);
+  return topRow || (midRow || bottomRow);
+};
+
+console.log(rowWin());
+
+var colWin = function() {
+  var leftCol = checkSquares($squares.eq(0), $squares.eq(1), $squares.eq(2));
+  console.log(leftCol);
+  var midCol = checkSquares($squares.eq(3), $squares.eq(4), $squares.eq(5));
+  console.log(midCol);
+  var bottomCol = checkSquares($squares.eq(6), $squares.eq(7), $squares.eq(8));
+  console.log(bottomCol);
+  return leftCol || (midCol || bottomCol);
+};
+
+console.log(colWin());
+
+var diagonalWin = function() {
+  var leftToRight = checkSquares($squares.eq(0), $squares.eq(4), $squares.eq(8));
+  console.log(leftToRight);
+  var rightToLeft = checkSquares($squares.eq(2), $squares.eq(4), $squares.eq(6));
+  console.log(rightToLeft);
+  return leftToRight || rightToLeft;
+};
+
+console.log(diagonalWin());
+
+
+  // THIRD, RUNNING THE ACTUAL FUNCTIONS
+
+var checkWinner = function() {
+  return rowWin() || (colWin() || diagonalWin());
+};
+
+
+// MARKING THE SQUARES WHEN PLAYERS CLICK
+  // CHECKING ON EACH CLICK FOR WINNER
+
+var markSquare = function () {
+  if ($(this).text() === "*" || $(this).text() === "o") {
+    console.log($(this).text());
     alert("Sorry, choose another square.");
+  } else {
+    $(this).text(marker);
+    console.log($(this).text());
+    console.log($(this));
+    if (marker === "*") {
+      $(this).addClass("tokenX");
+      var gameWon = checkWinner();
+      if (gameWon) {
+        alert("Congratulations, player " + marker + "! You win!");
+        } else {
+        nextTurn();
+      }
+    } else {
+      $(this).addClass("tokenO");
+      var gameWon = checkWinner();
+      if (gameWon) {
+        alert("Congratulations, player " + marker + "! You win!");
+        } else {
+        nextTurn();
+      }
+    }
   }
-});
+};
 
-// note to self: work out why the above isn't leaving a mark
-  // then, start tracking the moves in your array
-    // so you can then start reviewing game logic
+// THE ACTUAL ON CLICK EVENT LISTENER
 
-  // $squareA.one('click', function () {
-  //   var thisSquare = $squareA;
-  //   if (token === "*") {
-  //     $(thisSquare).append("<p class='tokenX'>*</p>");
-  //     console.log("P1 clicked Square A");
-  //     gameGrid[0][0] = "*";
-  //   }
-  //   else {
-  //     $(thisSquare).append("<p class='tokenO'>o</p>");
-  //     console.log("P2 clicked Square A");
-  //     gameGrid[0][0] = "o";
-  //   }
-  // });
-  //
+$squares.on("click", markSquare);
 
-// GAME LOGIC - HOW DO DIS
-  // is the square empty?
-  // who's turn it is it
-  // has anyone won yet?
-
-// win conditions
 
 });
-
-// this is a 2d array
-var gameGrid = [
-  ["","",""],
-  ["","",""],
-  ["","",""]
-];
-
-// we need to console log the array, and then run if else statements to check if the game has been won
-
-// NEXT STEP:
-  // refine click listeners to be more DRY - use a function - kinda done
-  // check game state - use a function
