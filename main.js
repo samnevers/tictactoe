@@ -1,3 +1,5 @@
+// HEADER ANIMATION?
+
 // Don't forget that anything that interacts with JS DOM elements needs to sit inside the Document Ready function
 $(document).ready(function() {
 
@@ -5,6 +7,8 @@ $(document).ready(function() {
   // reset function?
 
   var $gameboard = $(".gameboard");
+  var $newGame = $(".newGame");
+
 
 // DETERMINE WHO'S TURN IT IS
   var marker = "*";
@@ -36,6 +40,19 @@ var $squareH = $squares.eq(7);
 var $squareI = $squares.eq(8);
 
 
+// reset board
+
+  var resetGame = function() {
+    console.log($squares);
+    console.log($squares.text);
+    $squares.text("");
+    console.log($squares.text);
+    $squares.removeClass("tokenX");
+    $squares.removeClass("tokenO");
+    marker = "*";
+  };
+
+
 // DEFINING RULES FOR WINNING
   // FIRST, DEFINING/CHECKING FOR A WIN
 
@@ -46,10 +63,10 @@ var $squareI = $squares.eq(8);
 
     if ((squareOne === squareTwo) && (squareTwo === squareThree)) {
       if (squareOne === "*") {
-        console.log("Congratulations Player One!");
+        console.log("Congratulations Player *!");
         return "*";
       } else if (squareOne === "o") {
-        console.log("Congratulations Player Two!");
+        console.log("Congratulations Player o!");
         return "o";
       }
     }
@@ -136,5 +153,6 @@ var markSquare = function () {
 
 $squares.on("click", markSquare);
 
+$(".newGame").on("click", resetGame);
 
 });

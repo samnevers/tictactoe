@@ -109,13 +109,31 @@ p {
   padding: 0;
 }
 
+button {
+  width: 25vw;
+  height: 5vh;
+  background-color: rgba(247, 247, 247, 1);
+  border-style: none;;
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  position: relative;
+  top: 90px;
+  left: 34.5%;
+  text-decoration: none;
+}
+
+button:hover {
+  color: rgba(247, 247, 247, 1);
+  background-color: rgba(168, 58, 71, 1);
+}
+
 /*THIS WILL DO FOR NOW, BUT YOU STILL NEED TO:
   CENTER THE DIV
   REMOVE THE APPROPRIATE BORDERS
   STYLE THE BORDERS APPROPRIATELY*/
 
 /*BOTTOM DIV*/
-.bottom-div {
+/*.bottom-div {
   width: 80vw;
   border: 1px solid white;
   position: relative;
@@ -162,7 +180,7 @@ p {
   width: 100%;
   height: auto;
   display: block;
-}
+}*/
 
 footer {
   width: 100%;
