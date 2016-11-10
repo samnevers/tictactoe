@@ -2,11 +2,6 @@
   box-sizing: border-box;
 }
 
-/*NOTES TO SELF:
-FIX COLOUR SCHEME
-FIX TEXT ALIGNMENT
-PROBS FIX ICON/PLAYERS COLUMNS*/
-
 /*COLOR PALETTE - RGBA */
 /*Dark: 48, 41, 46
 Player 1/Red: 168, 58, 71
@@ -42,20 +37,21 @@ p {
   color: rgba(247, 247, 247, 0.8);
 }
 
+a {
+  text-decoration: none;
+  color: rgba(247, 247, 247, 0.8);
+}
+
 .tokenX {
   font-family: "Sanchez", serif;
   color: rgba(168, 58, 71, 1);
   font-size: 1600%;
-  margin: 0em;
-  line-height: 0.2em;
 }
 
 .tokenO {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Sanchez", sans-serif;
   color: rgba(247, 247, 247, 0.9);
   font-size:  900%;
-  margin: 0em;
-  line-height: 0.2em;
 }
 
 /*TOP*/
@@ -63,19 +59,13 @@ p {
   height: 160px;
   width: 100%;
   background-color: rgba(48, 41, 46, 1);
+  background-image: url("images/header.png");
+  background-position: center;
+  background-repeat: no-repeat;
   position:relative;
   display: block;
-  top: 0;
+  top: -20;
   left: 0;
-}
-
-.heading {
-  height: 12vw;
-  width:60vw;
-  position: relative;
-  top: 30%;
-  left: 15%;
-  background-color: rgba(48, 41, 46, 1);
   text-align: center;
 }
 
@@ -95,18 +85,27 @@ p {
 }
 
 .column {
-  width: 26vw;
+  width: 33%;
   height: 80vh;
   display: inline-block;
   float: left;
 }
 
 .square {
-  width: 26vw;
-  height: 26vh;
+  width: 100%;
+  height: 32.5%;
   border: rgba(247, 247, 247, 0.8) 4px solid;
   margin: 0;
-  padding: 0;
+  display: inline-block;
+  float:left;
+}
+
+.token {
+  width: 100%;
+  height: 50%;
+  padding: 10% 0;
+  display: inline-block;
+  float: left;
 }
 
 button {
@@ -126,11 +125,6 @@ button:hover {
   color: rgba(247, 247, 247, 1);
   background-color: rgba(168, 58, 71, 1);
 }
-
-/*THIS WILL DO FOR NOW, BUT YOU STILL NEED TO:
-  CENTER THE DIV
-  REMOVE THE APPROPRIATE BORDERS
-  STYLE THE BORDERS APPROPRIATELY*/
 
 /*BOTTOM DIV*/
 /*.bottom-div {
@@ -188,4 +182,5 @@ footer {
   background-color: rgba(48, 41, 46, 1);
   text-align: center;
   margin-top: 160px;
+  padding-top: 10px;
 }

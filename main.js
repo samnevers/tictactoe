@@ -8,7 +8,7 @@ $(document).ready(function() {
 
   var $gameboard = $(".gameboard");
   var $newGame = $(".newGame");
-
+  var $victory = $("#victory");
 
 // DETERMINE WHO'S TURN IT IS
   var marker = "*";
@@ -27,7 +27,8 @@ var nextTurn = function() {
 
 // ACCESSING THE SQUARES
 
-var $squares = $("div.square");
+var $squares = $("div.token");
+var $boxes = $("div.square");
 
 var $squareA = $squares.eq(0);
 var $squareB = $squares.eq(1);
@@ -133,6 +134,7 @@ var markSquare = function () {
       $(this).addClass("tokenX");
       var gameWon = checkWinner();
       if (gameWon) {
+        victory.play();
         alert("Congratulations, player " + marker + "! You win!");
         } else {
         nextTurn();
@@ -141,6 +143,7 @@ var markSquare = function () {
       $(this).addClass("tokenO");
       var gameWon = checkWinner();
       if (gameWon) {
+        victory.play();
         alert("Congratulations, player " + marker + "! You win!");
         } else {
         nextTurn();
@@ -151,7 +154,7 @@ var markSquare = function () {
 
 // THE ACTUAL ON CLICK EVENT LISTENER
 
-$squares.on("click", markSquare);
+$boxes.on("click", markSquare);
 
 $(".newGame").on("click", resetGame);
 
